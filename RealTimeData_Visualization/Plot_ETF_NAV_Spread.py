@@ -44,6 +44,7 @@ app.kill()      # app을 kill 하지 않는 경우 "피호출자가 호출을 �
 #%%
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+from datetime import datetime
 
 
 #%%
@@ -51,14 +52,20 @@ plt.style.use('bmh')
 
 fig, ax = plt.subplots(3, 1)
 
-ax2 = ax[0].twinx()
+ax2 = ax[0].twinx()     # animate_1에서 이중 y축 사용을 위해 먼저 설정  
 
-xdata1 = []
+xdata1 = []         # subplot에서 x축은 모두 공통
+
+# animate_1
 ydata1 = []
 ydata11 = []
-# xdata2 = []     // x축은 동일함
+
+# animate_2
+# xdata2 = []       # x축은 동일함
 ydata2 = []
 ydata22 = []
+
+# animate_3
 ydata3 = []
 
 
@@ -69,7 +76,8 @@ def animate_1(i):
     y = sheet['B6'].value       # ETF iNAV
     y2 = sheet['B4'].value      # ETF 현재가
 
-    xdata1.append(i)
+    # xdata1.append(i)
+    xdata1.append(datetime.now().strftime("%H:%M:%S.%f")[:-3])      # 시:분:초:ms(3자리까지)
     ydata1.append(y)
     ydata11.append(y2)
     
@@ -79,10 +87,13 @@ def animate_1(i):
     ax[0].plot(xdata1, ydata1, color='red')
 
     ax2.plot(xdata1, ydata11, color='blue')
+    ax2.grid(None)                               # twinx로 y축을 2개 쓸 경우 gird가 중복되므로 하나 제거
+
+    ax[0].tick_params(axis='x', rotation=45)     # x축 레이블 각도 조절 (axis='x' 없으면 x축과 y축 레이블 모두 각도가 바뀜)
 
 
 ani_1 = FuncAnimation(plt.gcf(), animate_1, interval=0.001)
-# plt.show()
+
 
 #%%
 # ETF iNAV와 현재가를 하나의 Y축에 대하여 나타냄
@@ -100,10 +111,11 @@ def animate_2(i):
     ax[1].plot(xdata1, ydata2, color='red')
     ax[1].plot(xdata1, ydata22, color='blue')
 
+    ax[1].tick_params(axis='x', rotation=45)
+
 ani_2 = FuncAnimation(plt.gcf(), animate_2, interval=0.001)
 
 
-#%%
 #%%
 # ETF iNAV와 현재가의 차이, 즉 스프레드를 나타냄
 
@@ -115,6 +127,9 @@ def animate_3(i):
     ax[2].cla()
     
     ax[2].plot(xdata1, ydata3, color='orange')
+
+    ax[2].tick_params(axis='x', rotation=45)
+
 
 ani_3 = FuncAnimation(plt.gcf(), animate_3, interval=0.001)
 
