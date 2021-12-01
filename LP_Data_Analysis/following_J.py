@@ -13,7 +13,7 @@ mysql_address = "10.238.116.29"
 mysql_port = 3306
 mysql_user = 'admin'
 mysql_pw = 'admin'
-mysql_schemas = 'passive'
+mysql_db = 'passive'
 mysql_charset = 'utf8'
 
 for file_name in file_list:
@@ -47,7 +47,7 @@ for file_name in file_list:
                             port        = mysql_port, 
                             user        = mysql_user, 
                             password    = mysql_pw, 
-                            db          = mysql_schemas, 
+                            db          = mysql_db, 
                             charset     = mysql_charset
                             )
 
