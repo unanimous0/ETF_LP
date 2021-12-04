@@ -13,7 +13,7 @@ os.chdir(foler_dir)
 
 # ETF LP 체결내역 데이터 경로
 path_dir = os.getcwd() + "/KRX데이터_LP체결내역"
-print(path_dir)
+# print(path_dir)
 
 # 해당 경로에 있는 파일 리스트화
 file_list = os.listdir(path_dir)
