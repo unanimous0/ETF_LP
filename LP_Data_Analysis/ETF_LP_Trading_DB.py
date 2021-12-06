@@ -5,11 +5,11 @@ import xlwings as xw
 import pandas as pd
 
 # 코드/실행 파일이 속한 폴더의 경로
-foler_dir = os.path.dirname(os.path.abspath(__file__))
+folder_dir = os.path.dirname(os.path.abspath(__file__))
 # print(foler_dir)
 
 # 디폴트 경로 변경
-os.chdir(foler_dir)
+os.chdir(folder_dir)
 
 # ETF LP 체결내역 데이터 경로
 path_dir = os.getcwd() + "/KRX데이터_LP체결내역"
