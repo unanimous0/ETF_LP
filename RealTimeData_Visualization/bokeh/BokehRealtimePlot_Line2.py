@@ -99,4 +99,4 @@ curdoc().title = "Streaming Stock Data Example"
 curdoc().add_root(lay_out)
 curdoc().add_periodic_callback(update, 100)
 
-# bokeh serve --show bokeh_test.py
+# bokeh serve --show BokehRealtimePlot_Line2.py
